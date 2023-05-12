@@ -20,6 +20,7 @@ const HeroBanner = () => {
             <FiArrowLeft/>
           </div>
         )}  
+        showThumbs = {false}
         renderArrowNext={(clickHandler , hasNext)=>(
           <div onClick={clickHandler} className='absolute right-0 h-10 flex items-center cursor-pointer justify-center w-12 md:w-20 md:h-16 top-[100px] md:top-[330px] z-10  bg-black hover:opacity-30'>
             <FiArrowRight/>

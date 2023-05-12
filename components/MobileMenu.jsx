@@ -12,15 +12,15 @@ const data = [
 
 ]
 const submenu = [
-    {id : 1 , name : "Nishant" , count : 2},
-    {id : 2 , name : "Saransh" , count : 10},
-    {id : 3 , name : "Ashish" , count : 1},
+    {id : 1 , name : "Gaming" , count : 2 , url : '/category/Gaming'},
+    {id : 2 , name : "Proffesional " , count : 10 , url : '/category/Proffesional'},
+    {id : 3 , name : "Low-End" , count : 1 , url : '/category/Lowend'},
 ]
 
 const MobileMenu = ({setmobileMenu,mobileMenu , setshowcatMenu , showcatMenu }) => {
   return (
     <div className='md:hidden'>
-    <Link onClick={()=>setmobileMenu(!mobileMenu)} href={`#`} className='transition-all'>{(!mobileMenu)?<FiAlignJustify/>:<FiX/>}</Link>
+    <div onClick={()=>setmobileMenu(!mobileMenu)} className='transition-all cursor-pointer'>{(!mobileMenu)?<FiAlignJustify/>:<FiX/>}</div>
     {mobileMenu && (<ul className='bg-white absolute top-9 right-6 min-w-[100px] px-1 shadow-lg rounded-sm'>
     {data.map((item)=>{
             return(
@@ -33,7 +33,7 @@ const MobileMenu = ({setmobileMenu,mobileMenu , setshowcatMenu , showcatMenu }) 
                         {showcatMenu && (<ul className='bg-white absolute top-6 left-0 min-w-[50px] pr-1 shadow-lg rounded-sm'>
                             {submenu.map((cat)=>{
                                 return (
-                                    <Link href={`#`} key={cat.id}>
+                                    <Link href={`${cat.url}`} key={cat.id}>
                                         <li className='h-7 flex text-black justify-between item-center px-3 hover:bg-black/[0.03] rounded-md'>
                                         {cat.name}
                                         <span className='opacity-50 text-sm px-2'>78</span>

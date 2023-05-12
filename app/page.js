@@ -9,11 +9,11 @@ export default function Home() {
     <HeroBanner/>
     <div className="text-center">
     <h1 className="text-4xl font-bold mb-4 mt-4">Sale the World through us</h1>
-    <p className="mb-2">We are the leading platform in the world of ecommerce <br/> Feel Free to 
+    <div className="mb-2">We are the leading platform in the world of ecommerce <br/> Feel Free to 
       buy anything and leave the quality to us 
-    </p>
     </div>
-    <div className="grid grid-cols-1 md:grid-cols-2 mt-5 mb-5 lg:grid-cols-3 gap-4 px-5">
+    </div>
+    <div className="grid grid-cols-1 md:grid-cols-2 mt-10 mb-5 lg:grid-cols-3 gap-4 px-5">
       <ProductCard/>
       <ProductCard/>
       <ProductCard/>
