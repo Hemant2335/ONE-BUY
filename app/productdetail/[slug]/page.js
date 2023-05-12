@@ -22,7 +22,7 @@ const ProductDetail = () => {
           starRatedColor="yellow"
           numberOfStars={5}
           starDimension="20px"
-          starSpacing="2px"
+          starSpacing="3px"
           name='rating'
         />
     <h3 className="text-[15px] mt-1 "> | 2136 Reviews | 4523 sold </h3>
