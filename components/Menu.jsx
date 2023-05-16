@@ -1,7 +1,16 @@
+'use client'
+
 import React from 'react'
 import Link from 'next/link'
-import { FiAlignCenter } from "react-icons/fi";
 import { FiChevronDown } from "react-icons/fi";
+import { useContext } from 'react';
+import { Context } from '@/app/Context/User';
+
+
+
+
+
+//https://www.instagram.com/reels/CqZLbShvA9z/
 
 const data = [
     { id: 1 , name : "Home" , url : '/'},
@@ -10,14 +19,17 @@ const data = [
     { id: 4 , name : "Contact" , url : '/contact'}
 ]
 
-const submenu = [
-    {id : 1 , name : "Gaming" , count : 2 , url : '/category/Gaming'},
-    {id : 2 , name : "Proffesional " , count : 10 , url : '/category/Proffesional'},
-    {id : 3 , name : "Low-End" , count : 1 , url : '/category/Lowend'},
-]
+// const submenu = [
+//     {id : 1 , name : "Lenovo" , count : 2 , url : '/category/Lenovo'},
+//     {id : 2 , name : "HP" , count : 10 , url : '/category/Proffesional'},
+//     {id : 3 , name : "ASUS" , count : 1 , url : '/category/Lowend'},
+// ]
 
 
 const Menu = ({showcatMenu , setshowcatMenu}) => {
+    
+    const {category} = useContext(Context);
+
   return (
     <ul className='hidden md:flex items-center gap-8 font-medium text-white'>
         {data.map((item)=>{
@@ -29,12 +41,12 @@ const Menu = ({showcatMenu , setshowcatMenu}) => {
                         {item.name}
                         <FiChevronDown/>
                         {showcatMenu && (<ul className='bg-white absolute top-6 left-0 min-w-[250px] px-1 shadow-lg rounded-sm'>
-                            {submenu.map((cat)=>{
+                            {category.map((cat)=>{
                                 return (
-                                    <Link href={`${cat.url}`} key={cat.id}>
+                                    <Link href={`/category/${cat?.attributes?.slug}`} key={cat.id}>
                                         <li className='h-12 flex text-black justify-between item-center px-3 py-2 hover:bg-black/[0.03] rounded-md'>
-                                        {cat.name}
-                                        <span className='opacity-50 text-sm'>78</span>
+                                        {cat?.attributes?.name}
+                                        <span className='opacity-50 text-sm'>{cat?.attributes?.products?.data.length}</span>
                                         </li>
                                     </Link>
                                 )

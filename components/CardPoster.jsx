@@ -50,18 +50,21 @@ const HeroBanner = () => {
           <Image
             src={poster}
             className="aspect-[16/10] md:aspect-auto object-cover max-h-[300px]"
+            alt = "image"
           />
         </div>
         <div>
           <Image
             src={poster1}
             className="aspect-[16/9] md:aspect-auto object-cover max-h-[300px] "
+            alt = "image"
           />
         </div>
         <div>
           <Image
             src={poster2}
             className="aspect-[16/10] md:aspect-auto object-cover max-h-[300px]"
+            alt = "image"
           />
         </div>
       </Carousel>
