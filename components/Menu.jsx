@@ -1,10 +1,11 @@
-'use client'
+'use client';
 
 import React from 'react'
 import Link from 'next/link'
 import { FiChevronDown } from "react-icons/fi";
-import { useContext } from 'react';
-import { Context } from '@/app/Context/User';
+import { useState } from 'react';
+import { useEffect } from 'react';
+import { fetchdata } from '@/utils/api';
 
 
 
@@ -27,8 +28,23 @@ const data = [
 
 
 const Menu = ({showcatMenu , setshowcatMenu}) => {
-    
-    const {category} = useContext(Context);
+    // const router = useRouter();
+    const [category, setcategory] = useState(null)
+    useEffect(()=>{
+      fetchprod();
+    },[])
+  
+    const fetchprod = async()=>{
+      const {data} = await fetchdata(`/api/categories?populate=*`)
+      console.log(data);
+      setcategory(data);
+    }
+
+
+    // const setcatdata = (data , slug)=>{
+    //     setcata(data);
+    //     router.push(`/category/${slug}`)
+    // }
 
   return (
     <ul className='hidden md:flex items-center gap-8 font-medium text-white'>
@@ -41,7 +57,7 @@ const Menu = ({showcatMenu , setshowcatMenu}) => {
                         {item.name}
                         <FiChevronDown/>
                         {showcatMenu && (<ul className='bg-white absolute top-6 left-0 min-w-[250px] px-1 shadow-lg rounded-sm'>
-                            {category.map((cat)=>{
+                            {category?.map((cat)=>{
                                 return (
                                     <Link href={`/category/${cat?.attributes?.slug}`} key={cat.id}>
                                         <li className='h-12 flex text-black justify-between item-center px-3 py-2 hover:bg-black/[0.03] rounded-md'>
