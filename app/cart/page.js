@@ -8,8 +8,13 @@ import { useSelector } from 'react-redux'
 import { useState } from 'react'
 import cartimg from "../../assets/img/cart.png"
 import Link from 'next/dist/client/link'
+import {loadStripe} from '@stripe/stripe-js';
+import { makepaymentreq } from '@/utils/api'
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
+
 
 const cart = () => {
+  const [loading, setloading] = useState(false)
 
   const {cartItem} = useSelector((state)=>state.cart);
 
@@ -22,6 +27,22 @@ const cart = () => {
       })
       settotalprice(t);
   })
+
+  const handlepayment=async()=>{
+    try {
+      setloading(true)
+      const stripe  = await stripePromise;
+      const res  = await makepaymentreq("/api/orders", {
+        products : cartItem
+      })
+      await stripe.redirectToCheckout({
+        sessionId: res.stripeSession.id
+      })
+    } catch (error) {
+      setloading(false)
+      console.log(error)
+    }
+  }
 
   return (
     <Wrapper>
@@ -44,7 +65,11 @@ const cart = () => {
             <hr />
             <div className='text-start mt-2'>This Tells you about total Expenses you would cost after buying the products present in your cart and also Never doubt our calculations</div>
         </div>
-        <button className='px-10 py-2 bg-white mt-4 rounded-lg text-black font-semibold hover:text-white hover:bg-Grey transition-transform active:scale-105'>Check Out</button>
+        <button className='px-10 py-2 bg-white mt-4 rounded-lg text-black font-semibold hover:text-white hover:bg-Grey transition-transform active:scale-105' onClick={handlepayment}>Check Out
+        {
+          loading && <h1>Loading...</h1>
+        }
+        </button>
         </div>
         </div>
         </div>)

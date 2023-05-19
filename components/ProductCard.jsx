@@ -14,7 +14,7 @@ const ProductCard = ({Title, Price , imgurl , slug,id}) => {
         </div>
         <div className='p-4 bg-black text-white'>
             <h2 className='text-lg'>{Title}</h2>
-            <h3 className='opacity-30 '>sa</h3>
+            <h3 className='opacity-30 font-semibold text-xl '>₹{Price}</h3>
         </div>
     </Link>
   )

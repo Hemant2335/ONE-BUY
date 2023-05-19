@@ -6,6 +6,7 @@ import { useState } from "react";
 import { fetchdata } from "@/utils/api";
 import { useEffect } from "react";
 import { useParams } from 'next/navigation';
+import sample from "../assets/img/taylor-smith-aDZ5YIuedQg-unsplash.jpg"
 
 
 const MultiCrousel = () => {
@@ -44,21 +45,23 @@ const MultiCrousel = () => {
     console.log(res)
   }
 
-
   return (
-    <div>
-      <Carousel responsive={responsive} autoPlay ={true} itemClass="mx-2 rounded-sm">
+      <>
       {
-        cate?.map((item)=>{
+        cate && (
+          <Carousel responsive={responsive} autoPlay ={true} itemClass="mx-2 rounded-sm">
+      {
+        (cate?.map((item)=>{
           return(
             <ProductCard Title={item?.attributes?.name} slug={item?.attributes?.slug} imgurl={item?.attributes?.thumbnail?.data?.attributes?.url} Price={item?.attributes?.price} id={slug}/>
           )
-        })
+        }))
       }
-      <ProductCard></ProductCard>
       </Carousel>
-      ;
-    </div>
+        )
+      }
+      
+      </>
   );
 };
 

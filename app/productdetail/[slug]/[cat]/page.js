@@ -97,7 +97,6 @@ const ProductDetail = () => {
     </ReactMarkdown>
       </div>
     <div className=" flex gap-8 mt-2">
-    <button className="h-[50px] w-[100px] rounded-sm px-2 bg-white mt-4  text-black font-semibold hover:text-white hover:bg-Grey transition-transform active:scale-105">Buy Now</button>
   <button className=" h-[50px] w-[100px] rounded-sm bg-white mt-4  text-black font-semibold hover:text-white hover:bg-Grey transition-transform active:scale-105" onClick={()=>{dispatch(additem({...cate?.[0] , oneQuantityprice : cate?.[0]?.attributes?.price})); notify()}}>Add to cart</button>
     </div>
     </div>

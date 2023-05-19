@@ -37,7 +37,7 @@ export default function Home({products}) {
     <div className="grid grid-cols-1 md:grid-cols-2 mt-10 mb-5 lg:grid-cols-3 gap-4 px-5">
       {
         Data?.map((item)=>{
-          return(<ProductCard key={item.id} Title={item?.attributes?.name} slug={item?.attributes?.slug} imgurl={item?.attributes?.thumbnail?.data?.attributes?.url} id={item?.attributes?.category?.data?.attributes?.slug} />
+          return(<ProductCard key={item.id} Title={item?.attributes?.name} slug={item?.attributes?.slug} imgurl={item?.attributes?.thumbnail?.data?.attributes?.url} id={item?.attributes?.category?.data?.attributes?.slug} Price={item?.attributes?.price} />
           )
         })
       }
