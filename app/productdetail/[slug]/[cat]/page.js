@@ -51,6 +51,8 @@ const ProductDetail = () => {
       });
   }
 
+    
+
   const alertcheck=()=>
   {
     setshowalert(false)
